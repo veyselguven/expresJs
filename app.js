@@ -10,6 +10,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //routers
 app.use("/admin", adminRoutes);
 app.use(userRoutes);
+app.use((req, res) => {
+  res.status(404).send("<h1>Page not Found</h1>");
+  // res.send("<h1>Page not Found</h1>");
+});
 
 // app.get("/", (req, res) => {
 //   res.send("Hello Veysel");
