@@ -1,5 +1,15 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
+
+const adminRoutes = require("./routes/admin");
+const userRoutes = require("./routes/user");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+//routers
+app.use("/admin", adminRoutes);
+app.use(userRoutes);
 
 // app.get("/", (req, res) => {
 //   res.send("Hello Veysel");
@@ -13,19 +23,13 @@ const app = express();
 //   console.log("middleware 1 is running");
 //   next(); // eger bu olmasa asasgidaki calismaz, cunku bu olmasa geriye response dondurur
 // });
-app.use("/", (req, res, next) => {
-  console.log("Loglama yapildi");
-  next();
-});
-app.use("/add-product", (req, res, next) => {
-  res.send("<h1>Product added</h1>");
-});
-app.use("/add-list", (req, res, next) => {
-  res.send("<h1>Product listing page</h1>");
-});
-app.use("/", (req, res, next) => {
-  res.send("<h1>Hello from express</h1>");
-});
+// app.use("/", (req, res, next) => {
+//   console.log("Loglama yapildi");
+//   next();
+// });
+// app.use("/add-list", (req, res, next) => {
+//   res.send("<h1>Product listing page</h1>");
+// });
 
 const port = 3000;
 
