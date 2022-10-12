@@ -9,13 +9,21 @@ const app = express();
 //   res.send("Listed Product");
 // });
 
-app.use((req, res, next) => {
-  console.log("middleware 1 is running");
-  next(); // eger bu olmasa asasgidaki calismaz, cunku bu olmasa geriye response dondurur
+// app.use((req, res, next) => {
+//   console.log("middleware 1 is running");
+//   next(); // eger bu olmasa asasgidaki calismaz, cunku bu olmasa geriye response dondurur
+// });
+app.use("/", (req, res, next) => {
+  console.log("Loglama yapildi");
+  next();
 });
-app.use((req, res, next) => {
-  console.log("middleware 2 is running");
-  //...
+app.use("/add-product", (req, res, next) => {
+  res.send("<h1>Product added</h1>");
+});
+app.use("/add-list", (req, res, next) => {
+  res.send("<h1>Product listing page</h1>");
+});
+app.use("/", (req, res, next) => {
   res.send("<h1>Hello from express</h1>");
 });
 
